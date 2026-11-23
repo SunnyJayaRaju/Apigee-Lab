@@ -11,7 +11,11 @@ If you find a security issue (exposed credentials pattern, policy bypass,
 injection via unvalidated flow variables, etc.):
 
 1. **Do NOT open a public issue.**
-2. Email **SunnyJayaRajuKummu@gmail.com** with:
+2. Report security issues privately using GitHub private vulnerability
+   reporting on this repository (Security tab, then Report a vulnerability):
+   https://github.com/SunnyJayaRaju/Apigee-Lab/security/advisories/new
+   For non-sensitive reports, open a public issue:
+   https://github.com/SunnyJayaRaju/Apigee-Lab/issues, with:
    - Description of the vulnerability
    - Steps to reproduce
    - Affected project/folder
