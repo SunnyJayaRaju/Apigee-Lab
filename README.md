@@ -192,14 +192,14 @@ sequenceDiagram
     - **Step 1:** Generate a test JWT at [jwt.io](https://jwt.io) using a temporary signing secret of your choice (for example, `demo-signing-secret`).
        - Security Note: This example uses a temporary secret for demonstration purposes only. In production Apigee deployments, signing secrets should never be hardcoded. Store them securely using services such as **Apigee KVM**, **Google Cloud Secret Manager**, or another approved secret management solution.
     - **Step 2 (Option A - Postman):**
-        - Create a **GET** request to `https://YOUR-HOST/weather-lab?city=London`.
+        - Create a **GET** request to `YOUR-HOST/weather-lab?city=London`.
         - Go to **Headers** tab.
         - Add Key: `Authorization`, Value: `Bearer <PASTE_YOUR_JWT>`.
         - Click **Send**.
     - **Step 2 (Option B - Terminal):**
         - Call the endpoint:
         ```bash
-        curl -H "Authorization: Bearer <JWT>" "https://YOUR-HOST/weather-lab?city=London"
+        curl -H "Authorization: Bearer <JWT>" "YOUR-HOST/weather-lab?city=London"
         ```
 ---
 
@@ -309,8 +309,8 @@ The architecture implements a standard **OAuth 2.0 Client Credentials Grant** pa
     - **Keys:** Copy the generated **Client ID** and **Client Secret**.
 
 3.  **Verify:**
-    - **Get Token:** POST your ID/Secret to `https://YOUR-HOST/bank-v1/token`.
-    - **Access Data:** Use the returned token to GET `https://YOUR-HOST/bank-v1/balance`.
+    - **Get Token:** POST your ID/Secret to `YOUR-HOST/bank-v1/token`.
+    - **Access Data:** Use the returned token to GET `YOUR-HOST/bank-v1/balance`.
 ---
 
 ## 📂 Project 3: Retail-Mesh-Orchestrator
@@ -395,7 +395,7 @@ sequenceDiagram
 2.  **Deploy:** Upload to **Google Cloud Apigee** and deploy to `eval`.
 
 3.  **Verify:**
-    - `GET https://YOUR-HOST/retail-v1/product/555`
+    - `GET YOUR-HOST/retail-v1/product/555`
     - **Expected Result:** A merged JSON response containing both Product and Inventory data.
 ---
 
