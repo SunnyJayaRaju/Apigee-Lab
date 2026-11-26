@@ -6,15 +6,13 @@ This repository is a collection of hands-on, enterprise inspired projects built 
 
 Whether you're learning Apigee, exploring enterprise API management, or reviewing my work, each project is fully documented with architecture diagrams, deployment guidance, and implementation notes.
 
-## At a glance
+## At a Glance
 
 Hands-on Apigee X labs for API security, traffic control, API composition, shared governance and CI/CD, with a one-click free Cloud Shell run.
 
-  <img src="https://img.shields.io/badge/Status-Active_Development-success?style=flat-square" />
-  <img src="https://img.shields.io/badge/Maintained%3F-yes-green?style=flat-square" />
-  <img src="https://img.shields.io/github/actions/workflow/status/SunnyJayaRaju/Apigee-Lab/apigee-ci.yml?branch=main&label=CI&style=flat-square" />
-  <img src="https://img.shields.io/github/last-commit/SunnyJayaRaju/Apigee-Lab?style=flat-square" />
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" />
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active_Development-success?style=flat-square" /> <img src="https://img.shields.io/badge/Maintained%3F-yes-green?style=flat-square" /> <img src="https://img.shields.io/github/actions/workflow/status/SunnyJayaRaju/Apigee-Lab/apigee-ci.yml?branch=main&label=CI&style=flat-square" /> <img src="https://img.shields.io/github/last-commit/SunnyJayaRaju/Apigee-Lab?style=flat-square" /> <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" />
+</p>
 
 ```bash
 ./tools/check-drift.sh
@@ -22,8 +20,7 @@ Hands-on Apigee X labs for API security, traffic control, API composition, share
 ./tools/build-bundles.sh target
 ```
 
-
-## 🚀 Try the Lab (zero setup · free)
+## 🚀 Try the Lab (Zero Setup · Free)
 
 <p align="center">
   <a href="https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git">
@@ -45,9 +42,9 @@ Hands-on Apigee X labs for API security, traffic control, API composition, share
 
 ## 📑 Table of Contents
 
-- [At a glance](#at-a-glance)
-- [Try the lab](#-try-the-lab-zero-setup--free)
-- [Table of contents](#-table-of-contents)
+- [At a Glance](#at-a-glance)
+- [Try the Lab](#-try-the-lab-zero-setup--free)
+- [Table of Contents](#-table-of-contents)
 - [Project 1: Weather-Shield-Gateway](#-project-1-weather-shield-gateway)
 - [Project 2: Secure-Bank-Access](#-project-2-secure-bank-access)
 - [Project 3: Retail-Mesh-Orchestrator](#-project-3-retail-mesh-orchestrator)
@@ -102,20 +99,48 @@ When a client request hits the **Weather Shield**:
 ### 🧩 Visual Diagram: API Request Flow
 
 The following diagram illustrates the request and response lifecycle for the `/weather-lab` endpoint managed by Google Cloud Apigee.
+<details>
+<summary><b>Click to Open the Diagram</b></summary>
+
 ```mermaid
-flowchart TD
-  A["📱 GET /weather-lab"] --> B["⛔️ Spike Arrest"]
-  B --> C["🔐 Verify JWT"]
-  C --> D["📉 Check Quota"]
-  D --> E{"⚡️ Cache?"}
-  E -->|"miss"| F["☁️ Fetch Weather"]
-  F --> G["💾 Populate Cache"]
-  E -->|"hit"| H["🧠 Read from Memory"]
-  G --> I["📝 Async Audit Log"]
-  H --> I
-  I --> J["✨ XML to JSON"]
-  J --> K["✅ 200 OK JSON"]
+%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+sequenceDiagram
+    autonumber
+    participant Client as 👤 Client
+    participant Apigee as 🛡️ Apigee Edge
+    participant Auth as 🔐 Security/Quota
+    participant Backend as ☁️ Weather API
+    participant LogServer as 📝 Audit Log
+
+    Note over Client, Apigee: Inbound Request
+    Client->>Apigee: GET /weather-lab
+    Apigee->>Apigee: ⛔️ Spike Arrest<br/>Check
+    
+    Apigee->>Auth: 🛡️ Verify JWT<br/>📉 Check Quota
+    Auth-->>Apigee: Allowed
+    
+    Note over Apigee, Backend: Routing Logic
+    Apigee->>Apigee: ⚡️ Check Cache
+    
+    alt Cache Miss (Data not found)
+        Apigee->>Backend: ☁️ Fetch Weather<br/>Data
+        Backend-->>Apigee: 📄 Return XML<br/>Response
+        Apigee->>Apigee: 💾 Populate<br/>Cache
+    else Cache Hit (Data found)
+        Apigee-->>Apigee: Retrieve from Memory
+    end
+
+    Note over Apigee, Client: Response Processing
+    par Async Logging
+        Apigee-)LogServer: 📡 Service Callout<br/>(Fire & Forget)
+    and Transformation
+        Apigee->>Apigee: ✨ Convert XML to JSON
+    end
+    
+    Apigee-->>Client: 200 OK (JSON Payload)
 ```
+
+</details>
 
 ### 🌊 Flow Description of Visual Diagram
 
@@ -169,6 +194,7 @@ flowchart TD
 4.  **Verify:**
     - **Step 1:** Generate a test JWT at [jwt.io](https://jwt.io) using a temporary signing secret of your choice (for example, `demo-signing-secret`).
        - Security Note: This example uses a temporary secret for demonstration purposes only. In production Apigee deployments, signing secrets should never be hardcoded. Store them securely using services such as **Apigee KVM**, **Google Cloud Secret Manager**, or another approved secret management solution.
+       - Choose your own secret; never reuse a demo value.
     - **Step 2 (Option A - Postman):**
         - Create a **GET** request to `YOUR-HOST/weather-lab?city=London`.
         - Go to **Headers** tab.
@@ -204,19 +230,38 @@ This proxy uses **Conditional Flows** to handle two distinct operations in one e
 
 ### 🧩 Visual Diagram: OAuth 2.0 Flow
 <details>
-<summary>Flow diagram</summary>
+<summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-flowchart TD
-  A["📱 POST /token"] --> B["🔐 Validate Creds"]
-  B -->|"valid"| C["🔑 Generate Token"]
-  C --> D["✅ 200 + token"]
-  D --> E["📱 GET /balance"]
-  E --> F{"🔍 Bearer token?"}
-  F -->|"bad"| G["❌ 401 Unauthorized"]
-  F -->|"good"| H["🏦 Request Account"]
-  H --> I["📦 JSON Response"]
-  I --> J["✅ 200 + balance"]
+%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+sequenceDiagram
+    autonumber
+    participant Client as 👤 Client<br/>(Postman)
+    participant Apigee as 🛡️ Apigee Edge
+    participant Auth as 🔐 OAuth Store
+    participant Backend as 🏦 Mock Backend
+
+    Note over Client, Auth: Phase 1: The Handshake<br/>(Get the Badge)
+    Client->>Apigee: POST /token<br/>(Client ID + Secret)
+    Apigee->>Auth: Validate Credentials
+    Auth-->>Apigee: Credentials Valid!
+    Apigee->>Auth: Generate Access Token
+    Auth-->>Apigee: 🔑 Token: "z29t..."
+    Apigee-->>Client: 200 OK {access_token: "z29t...", expires_in: 1800}
+
+    Note over Client, Backend: Phase 2: The Access<br/>(Enter the Vault)
+    Client->>Apigee: GET /balance<br/>(Authorization: Bearer z29t...)
+    Apigee->>Apigee: Condition: /balance?
+    Apigee->>Auth: 🔍 Verify Token<br/>"z29t..."
+    alt Token Invalid
+        Auth-->>Apigee: Error (Expired/Fake)
+        Apigee-->>Client: 401 Unauthorized
+    else Token Valid
+        Auth-->>Apigee: Success
+        Apigee->>Backend: Request Account Data
+        Backend-->>Apigee: JSON Response
+        Apigee-->>Client: 200 OK {"balance": 5000}
+    end
 ```
 
 </details>  
@@ -295,16 +340,30 @@ This proxy implements the **API Composition Pattern** (sometimes called "Backend
 
 ### 🧩 Visual Diagram: API Composition Flow
 <details>
-<summary>Flow diagram</summary>
+<summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-flowchart TD
-  A["📱 GET /product/555"] --> B["🧠 Orchestrator"]
-  B --> C["📦 Fetch Product"]
-  B --> D["🏭 Fetch Stock"]
-  C --> E["🧩 JavaScript Mashup"]
-  D --> E
-  E --> F["✅ 200 OK JSON"]
+%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+sequenceDiagram
+    autonumber
+    participant Client as 👤 Client
+    participant Apigee as 🧠 Orchestrator
+    participant ProductDB as 📦 Product API
+    participant InventoryDB as 🏭 Inventory API
+
+    Client->>Apigee: GET /product/555
+    
+    par Parallel Fetching
+        Apigee->>ProductDB: 📦 Fetch Product<br/>Details
+        Apigee->>InventoryDB: 🏭 Fetch Stock Levels<br/>(Service Callout)
+    end
+    
+    ProductDB-->>Apigee: {"name": "Super Widget"}
+    InventoryDB-->>Apigee: {"status": "In Stock"}
+    
+    Note over Apigee: 🧩 JavaScript<br/>Mashup Logic
+    
+    Apigee-->>Client: ✅ 200 OK<br/>{"product":..., "inventory":...}
 ```
 
 </details>
@@ -369,16 +428,24 @@ The pipeline creates a "Quality Gate" that prevents bad code from reaching produ
 | **4. Simulation** | `echo` | **CD Mock:** Simulates the cloud handshake (Deployment is currently manual due to env constraints). |
 
 ### 🧩 Visual Diagram: CI/CD Pipeline
+<details>
+<summary><b>Click to Open the Diagram</b></summary>
+
 ```mermaid
-flowchart TD
-  A["📤 git push"] --> B["⚙️ GitHub Actions"]
-  B --> C["🏗 Build Structure"]
-  C --> D["🔍 Lint Check"]
-  D -->|"fail"| E["⛔️ Stop Pipeline"]
-  D -->|"pass"| F["📦 Create Zip"]
-  F --> G["⬆️ Upload Artifact"]
-  G --> H["🚀 Mock Deployment"]
+%%{init: {"flowchart": {"nodeSpacing": 50, "rankSpacing": 60, "padding": 16}}}%%
+graph LR
+    Push[📤 git push] --> GitHub[⚙️ GitHub Actions]
+    GitHub --> Build[🏗 Build Structure]
+    Build --> Lint[🔍 Lint Check]
+    
+    Lint -- Fail --> Stop[⛔️ Stop Pipeline]
+    Lint -- Pass --> Zip[📦 Create Zip]
+    
+    Zip --> Upload[⬆️ Upload Artifact]
+    Upload --> Deploy[🚀 Mock Deployment]
 ```
+
+</details>
 
 ### 🌊 Flow Description
 The pipeline automates the software delivery lifecycle in three distinct phases:
@@ -453,18 +520,38 @@ This project separates global governance from local proxy logic.
 
 ### 🧩 Visual Diagram: Shared Flow Execution
 <details>
-<summary>Flow diagram</summary>
+<summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-flowchart TD
-  A["📱 GET /weather-lab"] --> B["🛡️ Weather Proxy"]
-  B --> C["📦 FlowCallout"]
-  C --> D["⛔️ Spike Arrest 100pm"]
-  D --> E["↩️ Resume Flow"]
-  E --> F["🔐 JWT + Quota"]
-  F --> G["☁️ Request Target"]
-  G --> H["🔒 Add Sec Headers"]
-  H --> I["✅ 200 OK Safe"]
+%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+sequenceDiagram
+    autonumber
+    participant Client as 👤 Client
+    participant Proxy as 🛡️ Weather Shield Proxy
+    participant Shared as 📦 Shared Flow<br/>(Governance)
+    participant Backend as ☁️ Target
+
+    Note over Client, Proxy: Inbound Request
+    Client->>Proxy: GET /weather-lab
+    
+    Note over Proxy, Shared: FlowCallout (Context Switch)
+    Proxy->>Shared: ⚡️ Invoke Governance
+    
+    rect rgb(255, 240, 240)
+        Note right of Shared: Security-Governance-v1
+        Shared->>Shared: ⛔️ Spike Arrest<br/>(100pm)
+    end
+    
+    Shared-->>Proxy: Resume Flow
+    
+    Note over Proxy, Backend: Local Proxy Logic
+    Proxy->>Proxy: 🔐 Verify JWT<br/>/ Check Quota
+    Proxy->>Backend: Request Data
+    Backend-->>Proxy: Response
+
+    Note over Proxy, Client: Response Hardening
+    Proxy->>Proxy: 🔒 Add Security Headers
+    Proxy-->>Client: ✅ 200 OK<br/>(Safe & Secured)
 ```
 
 </details>
