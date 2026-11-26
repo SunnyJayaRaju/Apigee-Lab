@@ -323,7 +323,7 @@ The architecture implements a standard **OAuth 2.0 Client Credentials Grant** pa
 **Status:** ✅ Actively Maintained | **Path:** `./Retail-Mesh-Orchestrator`
 
 An advanced **API Composition** project.
-Instead of simply proxying traffic, this API acts as an **Orchestrator**, making parallel calls to multiple backends and merging the data using JavaScript logic before responding to the client.
+Instead of simply proxying traffic, this API acts as an **Orchestrator**, combining the backend response with an inventory Service Callout and merging the data using JavaScript logic before responding to the client.
 
 ### 🛠 Tech Stack
 ![Apigee](https://img.shields.io/badge/Apigee-Orchestration-red?style=for-the-badge)
@@ -355,12 +355,9 @@ sequenceDiagram
 
     Client->>Apigee: GET /product/555
     
-    par Parallel Fetching
-        Apigee->>ProductDB: 📦 Fetch Product<br/>Details
-        Apigee->>InventoryDB: 🏭 Fetch Stock Levels<br/>(Service Callout)
-    end
-    
+    Apigee->>ProductDB: 📦 Fetch Product<br/>Details
     ProductDB-->>Apigee: {"name": "Super Widget"}
+    Apigee->>InventoryDB: 🏭 Fetch Stock Levels<br/>(Service Callout)
     InventoryDB-->>Apigee: {"status": "In Stock"}
     
     Note over Apigee: 🧩 JavaScript<br/>Mashup Logic
@@ -374,7 +371,7 @@ sequenceDiagram
 
 1.  **Request Ingest:** The client requests a composite resource (`/product/555`).
 2.  **Main Target:** The proxy forwards the request to the **Product Catalog** to get descriptions and pricing.
-3.  **Side Request (Service Callout):** *While* the main request is happening (or immediately after), the proxy makes a separate HTTP call to the **Inventory Service** to check stock levels.
+3.  **Side Request (Service Callout):** **After** the main response, the proxy makes a separate HTTP call to the **Inventory Service** to check stock levels.
 4.  **Data Holding:** Both responses are stored in flow variables (`response.content` and `inventoryResponse`).
 5.  **The Mashup (JavaScript):** A custom JS script executes to:
     - Parse both JSON payloads.
