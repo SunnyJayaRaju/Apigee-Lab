@@ -6,25 +6,22 @@ This repository is a collection of hands-on, enterprise inspired projects built 
 
 Whether you're learning Apigee, exploring enterprise API management, or reviewing my work, each project is fully documented with architecture diagrams, deployment guidance, and implementation notes.
 
-## At a Glance
+## 📌 At A Glance
 
 Hands-on Apigee X labs for API security, traffic control, API composition, shared governance and CI/CD, with a one-click free Cloud Shell run.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Active_Development-success?style=flat-square" /> <img src="https://img.shields.io/badge/Maintained%3F-yes-green?style=flat-square" /> <img src="https://img.shields.io/github/actions/workflow/status/SunnyJayaRaju/Apigee-Lab/apigee-ci.yml?branch=main&label=CI&style=flat-square" /> <img src="https://img.shields.io/github/last-commit/SunnyJayaRaju/Apigee-Lab?style=flat-square" /> <img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" />
+  <a href="https://github.com/SunnyJayaRaju/Apigee-Lab"><img alt="Status: Actively Maintained" src="https://img.shields.io/badge/Status-Actively_Maintained-success?style=flat-square" /></a>
+  <a href="https://github.com/SunnyJayaRaju/Apigee-Lab/actions/workflows/apigee-ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/SunnyJayaRaju/Apigee-Lab/apigee-ci.yml?branch=main&label=CI&style=flat-square" /></a>
+  <a href="https://github.com/SunnyJayaRaju/Apigee-Lab/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/SunnyJayaRaju/Apigee-Lab?style=flat-square" /></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" /></a>
 </p>
-
-```bash
-./tools/check-drift.sh
-./tools/validate.sh
-./tools/build-bundles.sh target
-```
 
 ## 🚀 Try the Lab (Zero Setup · Free)
 
 <p align="center">
   <a href="https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git">
-    <img src="https://img.shields.io/badge/▶%20Try%20the%20Lab-Google%20Cloud%20Shell-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+    <img alt="Open the lab in Google Cloud Shell" src="https://img.shields.io/badge/▶%20Try%20the%20Lab-Google%20Cloud%20Shell-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
   </a>
 </p>
 
@@ -34,17 +31,16 @@ Hands-on Apigee X labs for API security, traffic control, API composition, share
 
 | # | Project | What it demonstrates | Launch |
 |---|---------|----------------------|--------|
-| 1 | **Weather-Shield-Gateway** | JWT auth · Spike Arrest · Caching · Quotas | [![Open](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Weather-Shield-Gateway) |
-| 2 | **Secure-Bank-Access** | OAuth 2.0 Client Credentials flow | [![Open](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Secure-Bank-Access) |
-| 3 | **Retail-Mesh-Orchestrator** | API Composition · Service Callout · JS mashup | [![Open](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Retail-Mesh-Orchestrator) |
-| 4 | **Apigee-DevOps-Pipeline** | CI/CD · apigeelint · GitHub Actions | [![Open](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Apigee-DevOps-Pipeline) |
-| 5 | **Shared-Flows-Governance** | Shared Flows · FlowCallout · Governance | [![Open](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Shared-Flows-Governance) |
+| 1 | **Weather-Shield-Gateway** | JWT auth · Spike Arrest · Caching · Quotas | [![Open Weather-Shield-Gateway in Cloud Shell](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Weather-Shield-Gateway) |
+| 2 | **Secure-Bank-Access** | OAuth 2.0 Client Credentials flow | [![Open Secure-Bank-Access in Cloud Shell](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Secure-Bank-Access) |
+| 3 | **Retail-Mesh-Orchestrator** | API Composition · Service Callout · JS mashup | [![Open Retail-Mesh-Orchestrator in Cloud Shell](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Retail-Mesh-Orchestrator) |
+| 4 | **Apigee-DevOps-Pipeline** | CI/CD · apigeelint · GitHub Actions | [![Open Apigee-DevOps-Pipeline in Cloud Shell](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Apigee-DevOps-Pipeline) |
+| 5 | **Shared-Flows-Governance** | Shared Flows · FlowCallout · Governance | [![Open Shared-Flows-Governance in Cloud Shell](https://img.shields.io/badge/Open-Cloud%20Shell-4285F4?style=flat-square&logo=googlecloud&logoColor=white)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/SunnyJayaRaju/Apigee-Lab.git&cloudshell_workspace=Shared-Flows-Governance) |
 
 ## 📑 Table of Contents
 
-- [At a Glance](#at-a-glance)
+- [📌 At A Glance](#-at-a-glance)
 - [Try the Lab](#-try-the-lab-zero-setup--free)
-- [Table of Contents](#-table-of-contents)
 - [Project 1: Weather-Shield-Gateway](#-project-1-weather-shield-gateway)
 - [Project 2: Secure-Bank-Access](#-project-2-secure-bank-access)
 - [Project 3: Retail-Mesh-Orchestrator](#-project-3-retail-mesh-orchestrator)
@@ -62,7 +58,7 @@ A fully functional, enterprise-grade API Proxy that demonstrates the core pillar
 
 ### 🛠 Tech Stack
 ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
-![Apigee](https://img.shields.io/badge/Apigee-MX-red?style=for-the-badge)
+![Apigee](https://img.shields.io/badge/Apigee-X-red?style=for-the-badge)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-6BA539?style=for-the-badge&logo=openapi-initiative&logoColor=white)
 ![XML](https://img.shields.io/badge/XML-Configuration-orange?style=for-the-badge)
 ![JWT](https://img.shields.io/badge/Security-JWT_Token-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
@@ -94,16 +90,17 @@ When a client request hits the **Weather Shield**:
     - ✨ **Transform:** Converts backend XML to clean JSON.
 5.  **Response:** Client receives the final payload.
 
-<img width="2816" height="1536" alt="Project_1_Image" src="https://github.com/user-attachments/assets/0321a1d5-2432-48a1-98b6-b0c2c2af756d" />
+<img width="2816" height="1536" alt="Project 1 overview illustration" src="https://github.com/user-attachments/assets/0321a1d5-2432-48a1-98b6-b0c2c2af756d" />
 
 ### 🧩 Visual Diagram: API Request Flow
 
 The following diagram illustrates the request and response lifecycle for the `/weather-lab` endpoint managed by Google Cloud Apigee.
+
 <details>
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+%%{init: {"sequence": {"messageMargin": 55, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
 sequenceDiagram
     autonumber
     participant Client as 👤 Client
@@ -205,6 +202,7 @@ sequenceDiagram
         ```bash
         curl -H "Authorization: Bearer <JWT>" "YOUR-HOST/weather-lab?city=London"
         ```
+
 ---
 
 ## 📂 Project 2: Secure-Bank-Access
@@ -215,8 +213,8 @@ This project implements the **OAuth 2.0 Client Credentials** flow to secure sens
 
 ### 🛠 Tech Stack
 ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
-![Apigee](https://img.shields.io/badge/Apigee-MX-red?style=for-the-badge)
-![OAuth 2.0](https://img.shields.io/badge/Security-OAuth_2.0-blue?style=for-the-badge&logo=adguard&logoColor=white)
+![Apigee](https://img.shields.io/badge/Apigee-X-red?style=for-the-badge)
+![OAuth 2.0](https://img.shields.io/badge/Security-OAuth_2.0-blue?style=for-the-badge)
 ![XML](https://img.shields.io/badge/XML-Configuration-orange?style=for-the-badge)
 
 ### 📐 Architecture & Logic
@@ -229,11 +227,12 @@ This proxy uses **Conditional Flows** to handle two distinct operations in one e
 | **Wiring** | `05-Proxy-Wiring` | **Flow Logic:** Routes traffic based on URL (`/token` vs `/balance`). |
 
 ### 🧩 Visual Diagram: OAuth 2.0 Flow
+
 <details>
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+%%{init: {"sequence": {"messageMargin": 55, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
 sequenceDiagram
     autonumber
     participant Client as 👤 Client<br/>(Postman)
@@ -264,7 +263,8 @@ sequenceDiagram
     end
 ```
 
-</details>  
+</details>
+
 ### 🌊 Flow Description
 
 The architecture implements a standard **OAuth 2.0 Client Credentials Grant** pattern, separated into two distinct phases:
@@ -316,10 +316,11 @@ The architecture implements a standard **OAuth 2.0 Client Credentials Grant** pa
 3.  **Verify:**
     - **Get Token:** POST your ID/Secret to `YOUR-HOST/bank-v1/token`.
     - **Access Data:** Use the returned token to GET `YOUR-HOST/bank-v1/balance`.
+
 ---
 
 ## 📂 Project 3: Retail-Mesh-Orchestrator
-**Status:** ✅  Actively Maintained | **Path:** `./Retail-Mesh-Orchestrator`
+**Status:** ✅ Actively Maintained | **Path:** `./Retail-Mesh-Orchestrator`
 
 An advanced **API Composition** project.
 Instead of simply proxying traffic, this API acts as an **Orchestrator**, making parallel calls to multiple backends and merging the data using JavaScript logic before responding to the client.
@@ -339,11 +340,12 @@ This proxy implements the **API Composition Pattern** (sometimes called "Backend
 | **Wiring** | `05-Proxy-Wiring` | **Flow Logic:** Orchestrates the sequence of calls. |
 
 ### 🧩 Visual Diagram: API Composition Flow
+
 <details>
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+%%{init: {"sequence": {"messageMargin": 55, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
 sequenceDiagram
     autonumber
     participant Client as 👤 Client
@@ -403,6 +405,7 @@ sequenceDiagram
 3.  **Verify:**
     - `GET YOUR-HOST/retail-v1/product/555`
     - **Expected Result:** A merged JSON response containing both Product and Inventory data.
+
 ---
 
 ## 📂 Project 4: Apigee-DevOps-Pipeline
@@ -428,21 +431,20 @@ The pipeline creates a "Quality Gate" that prevents bad code from reaching produ
 | **4. Simulation** | `echo` | **CD Mock:** Simulates the cloud handshake (Deployment is currently manual due to env constraints). |
 
 ### 🧩 Visual Diagram: CI/CD Pipeline
+
 <details>
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 50, "rankSpacing": 60, "padding": 16}}}%%
+%%{init: {"flowchart": {"nodeSpacing": 30, "rankSpacing": 30, "padding": 16}}}%%
 graph LR
-    Push[📤 git push] --> GitHub[⚙️ GitHub Actions]
-    GitHub --> Build[🏗 Build Structure]
-    Build --> Lint[🔍 Lint Check]
-    
-    Lint -- Fail --> Stop[⛔️ Stop Pipeline]
-    Lint -- Pass --> Zip[📦 Create Zip]
-    
-    Zip --> Upload[⬆️ Upload Artifact]
-    Upload --> Deploy[🚀 Mock Deployment]
+    Push[📤 git<br/>push] --> GitHub[⚙️ GitHub<br/>Actions]
+    GitHub --> Build[🏗 Build<br/>Structure]
+    Build --> Lint[🔍 Lint<br/>Check]
+
+    Lint -- Fail --> Stop[⛔️ Stop<br/>Pipeline]
+    Lint -- Pass --> Zip[📦 Create Zip<br/>⬆️ Upload Artifact]
+    Zip --> Deploy[🚀 Mock<br/>Deployment]
 ```
 
 </details>
@@ -490,6 +492,7 @@ The pipeline automates the software delivery lifecycle in three distinct phases:
     - Scroll to the "Artifacts" section of the workflow summary.
     - Download **deployable-bundle**.
     - This zip file is verified and ready for manual upload to Google Cloud Apigee if needed.
+
 ---
 
 ## 📂 Project 5: Shared-Flows-Governance
@@ -519,11 +522,12 @@ This project separates global governance from local proxy logic.
 4.  **Resume:** If successful, control returns to the Proxy to handle Authentication and Caching.
 
 ### 🧩 Visual Diagram: Shared Flow Execution
+
 <details>
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"sequence": {"messageMargin": 40, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+%%{init: {"sequence": {"messageMargin": 55, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
 sequenceDiagram
     autonumber
     participant Client as 👤 Client
@@ -537,7 +541,7 @@ sequenceDiagram
     Note over Proxy, Shared: FlowCallout (Context Switch)
     Proxy->>Shared: ⚡️ Invoke Governance
     
-    rect rgb(255, 240, 240)
+    rect rgba(239, 68, 68, 0.14)
         Note right of Shared: Security-Governance-v1
         Shared->>Shared: ⛔️ Spike Arrest<br/>(100pm)
     end
@@ -661,4 +665,4 @@ API Engineer | Google Cloud Apigee | API Security | API Management
 
 If you found this repository useful, feel free to explore the projects, provide feedback, or connect with me on GitHub.
 
-GitHub: https://github.com/SunnyJayaRaju
+GitHub: [github.com/SunnyJayaRaju](https://github.com/SunnyJayaRaju)
