@@ -2,13 +2,13 @@
 
 Welcome to my **Digital Laboratory**.
 
-This repository is a collection of hands-on, enterprise inspired projects built with **Google Cloud Apigee**. Each project focuses on a specific area of API management: security, OAuth 2.0, traffic control, API composition, shared governance, and CI/CD. The goal is practical, reusable patterns rather than isolated policy examples.
+This repository is a collection of hands-on, enterprise-inspired projects built with **Google Cloud Apigee**. Each project focuses on a specific area of API management: security, OAuth 2.0, traffic control, API composition, shared governance, and CI/CD. The goal is practical, reusable patterns rather than isolated policy examples.
 
 Whether you're learning Apigee, exploring enterprise API management, or reviewing my work, each project is fully documented with architecture diagrams, deployment guidance, and implementation notes.
 
 ## 📌 At A Glance
 
-Hands-on Apigee X labs for API security, traffic control, API composition, shared governance and CI/CD, with a one-click free Cloud Shell run.
+Hands-on Apigee X labs for API security, traffic control, API composition, shared governance, and CI/CD, with a one-click free Cloud Shell run.
 
 <p align="center">
   <a href="https://github.com/SunnyJayaRaju/Apigee-Lab"><img alt="Status: Actively Maintained" src="https://img.shields.io/badge/Status-Actively_Maintained-success?style=flat-square" /></a>
@@ -39,7 +39,7 @@ Hands-on Apigee X labs for API security, traffic control, API composition, share
 
 ## 📑 Table of Contents
 
-- [📌 At A Glance](#-at-a-glance)
+- [At A Glance](#-at-a-glance)
 - [Try the Lab](#-try-the-lab-zero-setup--free)
 - [Project 1: Weather-Shield-Gateway](#-project-1-weather-shield-gateway)
 - [Project 2: Secure-Bank-Access](#-project-2-secure-bank-access)
@@ -70,8 +70,8 @@ The project structure follows a modular design pattern to separate concerns.
 | :--- | :--- | :--- |
 | **Contract** | `01-API-Design` | **OpenAPI 3.0 Spec** defining the API surface and data models. |
 | **Mediation** | `02-Mediation` | **Transformation & Optimization:** JSON conversion and Caching logic. |
-| **Security** | `03-Security` | **Protection:** Spike Arrests, JWT Validation, and API Key checks. |
-| **Governance** | `04-Monetization` | **Rate Limiting:** Enforcing Quotas (Silver Tier) for monetization. |
+| **Security** | `03-Security` | **Protection:** Spike Arrest, JWT Validation, and API Key checks. |
+| **Monetization** | `04-Monetization` | **Rate Limiting:** Enforcing Quotas (Silver Tier) for monetization. |
 | **Wiring** | `05-Proxy-Wiring` | **Orchestration:** Connecting policies into `PreFlow`, `PostFlow`, and `FaultRules`. |
 
 ### 🔄 Execution Flow
@@ -90,8 +90,6 @@ When a client request hits the **Weather Shield**:
     - ✨ **Transform:** Converts backend XML to clean JSON.
 5.  **Response:** Client receives the final payload.
 
-<img width="2816" height="1536" alt="Project 1 overview illustration" src="https://github.com/user-attachments/assets/0321a1d5-2432-48a1-98b6-b0c2c2af756d" />
-
 ### 🧩 Visual Diagram: API Request Flow
 
 The following diagram illustrates the request and response lifecycle for the `/weather-lab` endpoint managed by Google Cloud Apigee.
@@ -104,7 +102,7 @@ The following diagram illustrates the request and response lifecycle for the `/w
 sequenceDiagram
     autonumber
     participant Client as 👤 Client
-    participant Apigee as 🛡️ Apigee Edge
+    participant Apigee as 🛡️ Apigee X
     participant Auth as 🔐 Security/Quota
     participant Backend as ☁️ Weather API
     participant LogServer as 📝 Audit Log
@@ -112,13 +110,13 @@ sequenceDiagram
     Note over Client, Apigee: Inbound Request
     Client->>Apigee: GET /weather-lab
     Apigee->>Apigee: ⛔️ Spike Arrest<br/>Check
-    
+
     Apigee->>Auth: 🛡️ Verify JWT<br/>📉 Check Quota
     Auth-->>Apigee: Allowed
-    
+
     Note over Apigee, Backend: Routing Logic
     Apigee->>Apigee: ⚡️ Check Cache
-    
+
     alt Cache Miss (Data not found)
         Apigee->>Backend: ☁️ Fetch Weather<br/>Data
         Backend-->>Apigee: 📄 Return XML<br/>Response
@@ -133,13 +131,13 @@ sequenceDiagram
     and Transformation
         Apigee->>Apigee: ✨ Convert XML to JSON
     end
-    
+
     Apigee-->>Client: 200 OK (JSON Payload)
 ```
 
 </details>
 
-### 🌊 Flow Description of Visual Diagram
+### 🌊 Flow Description
 
 1.  **Request Pipeline (PreFlow):**
     - **Traffic Management:** The proxy first applies a **Spike Arrest** policy to protect against traffic surges.
@@ -236,7 +234,7 @@ This proxy uses **Conditional Flows** to handle two distinct operations in one e
 sequenceDiagram
     autonumber
     participant Client as 👤 Client<br/>(Postman)
-    participant Apigee as 🛡️ Apigee Edge
+    participant Apigee as 🛡️ Apigee X
     participant Auth as 🔐 OAuth Store
     participant Backend as 🏦 Mock Backend
 
@@ -354,14 +352,14 @@ sequenceDiagram
     participant InventoryDB as 🏭 Inventory API
 
     Client->>Apigee: GET /product/555
-    
+
     Apigee->>ProductDB: 📦 Fetch Product<br/>Details
     ProductDB-->>Apigee: {"name": "Super Widget"}
     Apigee->>InventoryDB: 🏭 Fetch Stock Levels<br/>(Service Callout)
     InventoryDB-->>Apigee: {"status": "In Stock"}
-    
+
     Note over Apigee: 🧩 JavaScript<br/>Mashup Logic
-    
+
     Apigee-->>Client: ✅ 200 OK<br/>{"product":..., "inventory":...}
 ```
 
@@ -433,15 +431,27 @@ The pipeline creates a "Quality Gate" that prevents bad code from reaching produ
 <summary><b>Click to Open the Diagram</b></summary>
 
 ```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 30, "rankSpacing": 30, "padding": 16}}}%%
-graph LR
-    Push[📤 git<br/>push] --> GitHub[⚙️ GitHub<br/>Actions]
-    GitHub --> Build[🏗 Build<br/>Structure]
-    Build --> Lint[🔍 Lint<br/>Check]
+%%{init: {"sequence": {"messageMargin": 55, "boxMargin": 12, "actorMargin": 70, "width": 180, "height": 50}}}%%
+sequenceDiagram
+    autonumber
+    participant Dev as 👤 Developer
+    participant GH as ⚙️ GitHub Actions
+    participant Lint as 🔍 apigeelint
+    participant Store as 📦 Artifact Storage
 
-    Lint -- Fail --> Stop[⛔️ Stop<br/>Pipeline]
-    Lint -- Pass --> Zip[📦 Create Zip<br/>⬆️ Upload Artifact]
-    Zip --> Deploy[🚀 Mock<br/>Deployment]
+    Dev->>GH: 📤 git push to main
+    Note over GH: Provision Runner<br/>and Install Node.js
+    GH->>GH: 🏗 Build apiproxy<br/>Structure
+    GH->>Lint: 🔍 Lint Check
+    alt Lint Fails
+        Lint-->>GH: ⛔️ Errors Found
+        GH-->>Dev: ⛔️ Pipeline Stopped
+    else Lint Passes
+        Lint-->>GH: ✅ Clean
+        GH->>GH: 📦 Create<br/>apiproxy.zip
+        GH->>Store: ⬆️ Upload Artifact
+        GH->>GH: 🚀 Mock Deployment<br/>(Simulated Handoff)
+    end
 ```
 
 </details>
@@ -534,17 +544,17 @@ sequenceDiagram
 
     Note over Client, Proxy: Inbound Request
     Client->>Proxy: GET /weather-lab
-    
+
     Note over Proxy, Shared: FlowCallout (Context Switch)
     Proxy->>Shared: ⚡️ Invoke Governance
-    
+
     rect rgba(239, 68, 68, 0.14)
         Note right of Shared: Security-Governance-v1
         Shared->>Shared: ⛔️ Spike Arrest<br/>(100pm)
     end
-    
+
     Shared-->>Proxy: Resume Flow
-    
+
     Note over Proxy, Backend: Local Proxy Logic
     Proxy->>Proxy: 🔐 Verify JWT<br/>/ Check Quota
     Proxy->>Backend: Request Data
