@@ -51,7 +51,7 @@ paths:
                   expires_in:
                     type: integer
                     example: 300
-  
+
   # 2. The "Vault" - Requires the Badge (Token) to enter
   /balance:
     get:

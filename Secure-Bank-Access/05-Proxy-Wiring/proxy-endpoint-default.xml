@@ -30,7 +30,7 @@
             <Condition>(proxy.pathsuffix MatchesPath "/balance") and (request.verb = "GET")</Condition>
         </Flow>
     </Flows>
-    
+
     <PostFlow name="PostFlow">
         <Request/>
         <Response/>
